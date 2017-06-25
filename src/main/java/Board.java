@@ -39,7 +39,7 @@ int cnt=0;
 
             found=canPutN(x,y,direction,4);
             if (found) {
-                put4(x,y,direction);
+                put(x,y,direction,4);
                 cnt++;
             }
 
@@ -113,31 +113,33 @@ int cnt=0;
         return false;
     }
 
-    //unsafe
-    private void  put4(int x, int y, int direction){
+    //unsaf
+    private void  put(int x, int y, int direction,int size){
         if (direction == 0) {
-            board[x][y] = 4;
-            board[x - 1][y] = 4;
-            board[x - 2][y] = 4;
-            board[x - 3][y] = 4;
+            for (int step=0; step<=size-1;step++){
+                board[x-step][y]=size;
+            }
         }
         if (direction == 1) {
-            board[x][y] = 4;
-            board[x][y+1] = 4;
-            board[x][y+2] = 4;
-            board[x][y+3] = 4;
+
+            for (int step=0; step<=size-1;step++){
+                board[x][y+step]=size;
+            }
+
+
         }
         if (direction == 2) {
-            board[x][y] = 4;
-            board[x + 1][y] = 4;
-            board[x + 2][y] = 4;
-            board[x + 3][y] = 4;
+            for (int step=0; step<=size-1;step++){
+               board[x+step][y]=size;
+            }
+
         }
         if (direction == 3) {
-            board[x][y] = 4;
-            board[x][y-1] = 4;
-            board[x][y-2] = 4;
-            board[x][y-3] = 4;
+
+            for (int step=0; step<=size-1;step++){
+                board[x][y-step]=size;
+            }
+
         }
     }
 
