@@ -20,8 +20,15 @@ public class Board {
             System.out.println();
         }
     }
+    public void setAllShipsRandomly() {
+        setRandomly(4,1);
+        setRandomly(3,2);
+        setRandomly(2,3);
+        setRandomly(1,4);
 
-    public void setAllShipsRandomly(){
+
+    }
+    public void setRandomly(int size,int amnt){
 
 
 
@@ -32,19 +39,19 @@ public class Board {
 int cnt=0;
         do {
             int x = randm.nextInt(board.length);
-            int y = randm.nextInt(board.length);
+            int y = randm.nextInt(board[0].length);
 
             int direction = randm.nextInt(4);
             // 0 - w lewo, 1 gora, 2 prawo, 3 dol
 
-            found=canPutN(x,y,direction,4);
+            found=canPutN(x,y,direction,size);
             if (found) {
-                put(x,y,direction,4);
+                put(x,y,direction,size);
                 cnt++;
             }
 
 
-        }while (cnt<40);
+        }while (cnt<amnt);
 
 
 
