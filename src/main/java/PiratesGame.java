@@ -19,9 +19,7 @@ public class PiratesGame {
 
 
     public void setShips(){
-       myShips.setShip(1,1,1);
-
-        myShips.setShip(1,4,-1);
+       myShips.setAllShipsRandomly();
     }
 
     public static void main(String[] args) {

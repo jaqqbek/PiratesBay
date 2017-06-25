@@ -29,33 +29,37 @@ public class Board {
 
 
         boolean found=false;
-
+int cnt=0;
         do {
             int x = randm.nextInt(board.length);
             int y = randm.nextInt(board.length);
 
             int direction = randm.nextInt(4);
             // 0 - w lewo, 1 gora, 2 prawo, 3 dol
-            found=canPut4(x,y,direction);
 
-            if (found) put4(x,y,direction);
+            found=canPutN(x,y,direction,4);
+            if (found) {
+                put4(x,y,direction);
+                cnt++;
+            }
 
 
-        }while (!found);
+        }while (cnt<40);
 
 
 
     }
 
-    private boolean canPut4(int x, int y, int direction){
+    private boolean canPutN(int x, int y, int direction,int size){
+
+        if (board[x][y]!=0) return false;
 
         if (direction == 0) {
-            if (x - 3 >= 0) {
-                if (board[x][y]!=0) return false;
-                if (board[x-1][y]!=0) return false;
-                if (board[x-2][y]!=0) return false;
-                if (board[x-3][y]!=0) return false;
+            if (x - size-1 >= 0) {
 
+                for (int step=0; step<=size-1;step++){
+                    if (board[x-step][y]!=0) return false;
+                }
                 //jeszcze sprawdz czy nie moga sie stykac
 
                 return true;
@@ -65,12 +69,10 @@ public class Board {
 
         }
         if (direction == 1) {
-            if (y + 3 >= 0) {
-                if (board[x][y]!=0) return false;
-                if (board[x][y+1]!=0) return false;
-                if (board[x][y+2]!=0) return false;
-                if (board[x][y+3]!=0) return false;
-
+            if (y + size-1 <= 9) {
+                for (int step=0; step<=size-1;step++){
+                    if (board[x][y+step]!=0) return false;
+                }
                 //jeszcze sprawdz czy nie moga sie stykac
 
                 return true;
@@ -80,11 +82,10 @@ public class Board {
 
         }
         if (direction == 2) {
-            if (x + 3 <= 9) {
-                if (board[x][y]!=0) return false;
-                if (board[x+1][y]!=0) return false;
-                if (board[x+2][y]!=0) return false;
-                if (board[x+3][y]!=0) return false;
+            if (x + size-1 <= 9) {
+                for (int step=0; step<=size-1;step++){
+                    if (board[x+step][y]!=0) return false;
+                }
 
                 //jeszcze sprawdz czy nie moga sie stykac
 
@@ -95,11 +96,10 @@ public class Board {
 
         }
         if (direction == 3) {
-            if (y +3 <=9) {
-                if (board[x][y]!=0) return false;
-                if (board[x][y-1]!=0) return false;
-                if (board[x][y-2]!=0) return false;
-                if (board[x][y-3]!=0) return false;
+            if (y -size-1 >=0) {
+                for (int step=0; step<=size-1;step++){
+                    if (board[x][y-step]!=0) return false;
+                }
 
                 //jeszcze sprawdz czy nie moga sie stykac
 
